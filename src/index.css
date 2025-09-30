@@ -3,20 +3,27 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
 
-
 @layer base {
   :root {
-    /* Color Psychology Palette */
-    --mint-aqua: #94e2d5;           /* Trust, calmness, clarity */
-    --soft-coral: #ff9f8a;         /* Creativity, warmth, energy */
-    --pale-gold: #f4d03f;          /* Success, luxury, optimism */
+    /* Aqua-Teal Color Psychology Palette */
+    --mint-aqua: #94e2d5;           /* Your base color - calmness, clarity, trust */
+    --soft-coral: #ff9f8a;         /* Complementary warm accent - creativity, energy */
+    --pale-gold: #f4d03f;          /* Gold accent - luxury, success */
     --deep-navy: #181825;          /* Sophistication, professionalism */
-    --ocean-blue: #3498db;         /* Trust, reliability, stability */
-    --seafoam: #a8f5e8;           /* Freshness, purity, innovation */
-    --sky-blue: #87ceeb;          /* Openness, freedom, creativity */
-    --royal-blue: #2980b9;        /* Authority, confidence, depth */
+    --ocean-blue: #3498db;         /* Trust, reliability */
+    --seafoam: #a8f5e8;           /* Lighter aqua - freshness, purity */
+    --mist-white: #f8fdfc;        /* Clean, minimal background */
+    --charcoal: #2c3e50;          /* Professional text */
+    
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
   }
-
 
   * {
     margin: 0;
@@ -24,492 +31,313 @@
     box-sizing: border-box;
   }
   
-  html {
-    scroll-behavior: smooth;
-  }
-  
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    /* Enhanced psychology-based gradient animation */
+    /* Psychology-based gradient: Mint→Sky→Ocean→Deep */
     background: linear-gradient(135deg, 
-      var(--mint-aqua) 0%,     /* Start: Trust & Calmness */
-      var(--seafoam) 15%,      /* Freshness & Purity */
-      var(--sky-blue) 30%,     /* Openness & Creativity */
-      var(--ocean-blue) 45%,   /* Trust & Reliability */
-      var(--royal-blue) 60%,   /* Authority & Confidence */
-      var(--deep-navy) 75%,    /* Sophistication */
-      #0f0f23 90%,             /* Deep Mystery */
-      var(--deep-navy) 100%    /* End: Professional Depth */
+      #94e2d5 0%,    /* Mint-Aqua: Calmness, trust */
+      #a8f5e8 20%,   /* Seafoam: Freshness, purity */
+      #87ceeb 40%,   /* Sky Blue: Openness, innovation */
+      #3498db 60%,   /* Ocean Blue: Trust, reliability */
+      #2980b9 80%,   /* Deep Blue: Professionalism */
+      #181825 100%   /* Navy: Sophistication, depth */
     );
     background-size: 400% 400%;
-    animation: psychologyFlow 25s ease infinite;
+    animation: calmingFlow 30s ease infinite;
     min-height: 100vh;
     color: #ffffff;
     overflow-x: hidden;
-    position: relative;
   }
-
-
-  /* Subtle overlay for better text readability */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-      ellipse at center,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.3) 100%
-    );
-    pointer-events: none;
-    z-index: 1;
+  
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-
 @layer components {
-  /* Perfect center alignment system */
+  /* Trust & Innovation-focused containers */
   .page-container {
     @apply min-h-screen flex flex-col items-center justify-center px-4 py-20;
     @apply sm:px-6 md:px-8 lg:px-12;
     @apply py-16 sm:py-20 md:py-24 lg:py-28;
-    position: relative;
-    z-index: 2;
   }
   
   .content-section {
-    @apply w-full max-w-7xl mx-auto text-center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    @apply sm:gap-8 md:gap-10 lg:gap-12;
+    @apply w-full max-w-7xl mx-auto text-center space-y-6;
+    @apply sm:space-y-8 md:space-y-10 lg:space-y-12;
   }
-
-
-  /* Enhanced glass morphism with perfect alignment */
+  
+  /* Clean, trustworthy glass cards */
   .glass-card {
     background: linear-gradient(135deg, 
-      rgba(148, 226, 213, 0.25) 0%,   /* Mint-aqua: Trust */
-      rgba(255, 255, 255, 0.15) 30%,  /* Clean overlay */
-      rgba(52, 152, 219, 0.2) 70%,    /* Ocean blue: Reliability */
-      rgba(24, 24, 37, 0.1) 100%      /* Depth */
+      rgba(148, 226, 213, 0.25) 0%,  /* Mint-aqua for trust */
+      rgba(255, 255, 255, 0.15) 50%, /* Clean white overlay */
+      rgba(24, 24, 37, 0.1) 100%     /* Subtle depth */
     );
-    backdrop-filter: blur(20px) saturate(1.2);
+    backdrop-filter: blur(25px);
     border: 1px solid rgba(148, 226, 213, 0.4);
     @apply rounded-2xl p-4 transition-all duration-500;
     @apply sm:p-6 md:p-8;
-    
-    /* Perfect text alignment */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-    /* Enhanced shadows for depth */
+    color: #ffffff;
     box-shadow: 
       0 8px 32px rgba(148, 226, 213, 0.15),
-      0 2px 8px rgba(255, 255, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      0 2px 8px rgba(255, 255, 255, 0.1);
   }
-
 
   .glass-card:hover {
     background: linear-gradient(135deg, 
       rgba(148, 226, 213, 0.35) 0%, 
-      rgba(255, 255, 255, 0.25) 30%,
-      rgba(52, 152, 219, 0.3) 70%,
-      rgba(255, 159, 138, 0.1) 100%
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(52, 152, 219, 0.15) 100%
     );
     border: 1px solid rgba(148, 226, 213, 0.6);
     transform: translateY(-8px) scale(1.02);
     box-shadow: 
-      0 16px 48px rgba(148, 226, 213, 0.25),
-      0 4px 16px rgba(255, 255, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 16px 48px rgba(148, 226, 213, 0.3),
+      0 4px 16px rgba(255, 255, 255, 0.2);
   }
 
+  /* Innovation-focused cards with coral accent */
+  .innovation-card {
+    background: linear-gradient(135deg, 
+      rgba(255, 159, 138, 0.2) 0%,   /* Soft coral for creativity */
+      rgba(148, 226, 213, 0.3) 100%  /* Mint-aqua for trust */
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 159, 138, 0.3);
+    @apply rounded-2xl p-6 transition-all duration-300;
+    box-shadow: 0 8px 24px rgba(255, 159, 138, 0.2);
+  }
 
-  /* Perfect grid alignment */
+  .innovation-card:hover {
+    border: 1px solid rgba(255, 159, 138, 0.5);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(255, 159, 138, 0.3);
+  }
+
+  /* Professional achievement cards */
+  .achievement-card {
+    background: linear-gradient(135deg, 
+      rgba(244, 208, 63, 0.2) 0%,    /* Gold for success */
+      rgba(148, 226, 213, 0.3) 100%  /* Mint-aqua for trust */
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(244, 208, 63, 0.4);
+    @apply rounded-2xl p-4 transition-all duration-300;
+    box-shadow: 0 6px 20px rgba(244, 208, 63, 0.2);
+  }
+
+  /* Responsive grid systems */
   .grid-responsive-2 {
-    @apply grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8;
-    place-items: center;
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6;
   }
-
 
   .grid-responsive-3 {
-    @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8 lg:gap-10;
-    place-items: center;
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 lg:gap-8;
   }
-
 
   .grid-responsive-4 {
-    @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8 lg:gap-10;
-    place-items: center;
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 lg:gap-8;
   }
-
 
   .grid-responsive-5 {
-    @apply grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-6 md:gap-8;
-    place-items: center;
+    @apply grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-4 md:gap-6;
   }
 
-
-  /* Color psychology typography */
+  /* Typography with color psychology */
   .text-hero {
     @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-align: center;
-    
-    /* High contrast for readability */
     color: #ffffff;
-    text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.3),
-      0 0 20px rgba(148, 226, 213, 0.3);
+    text-shadow: 2px 2px 8px rgba(24, 24, 37, 0.3);
   }
-
 
   .text-page-title {
     @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
     color: #ffffff;
-    text-shadow: 
-      2px 2px 4px rgba(0, 0, 0, 0.3),
-      0 0 15px rgba(148, 226, 213, 0.2);
+    text-shadow: 2px 2px 6px rgba(24, 24, 37, 0.3);
   }
-
 
   .text-section-title {
     @apply text-2xl sm:text-3xl md:text-4xl;
-    font-weight: 600;
-    line-height: 1.3;
-    text-align: center;
     color: #ffffff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 4px rgba(24, 24, 37, 0.3);
   }
 
-
-  /* Trust-building accent text */
-  .text-accent-trust {
+  .text-responsive-lg {
     @apply text-lg sm:text-xl md:text-2xl;
-    color: var(--mint-aqua);
+    color: #94e2d5; /* Mint-aqua for trustworthy accents */
     font-weight: 600;
-    text-align: center;
-    text-shadow: 
-      1px 1px 2px rgba(0, 0, 0, 0.2),
-      0 0 10px rgba(148, 226, 213, 0.3);
-  }
-
-
-  /* Innovation-focused accent text */
-  .text-accent-innovation {
-    @apply text-lg sm:text-xl md:text-2xl;
-    color: var(--soft-coral);
-    font-weight: 600;
-    text-align: center;
-    text-shadow: 
-      1px 1px 2px rgba(0, 0, 0, 0.2),
-      0 0 10px rgba(255, 159, 138, 0.3);
-  }
-
-
-  /* Body text with perfect readability */
-  .text-body {
-    @apply text-sm sm:text-base md:text-lg;
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.7;
-    text-align: center;
-    font-weight: 400;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   }
 
-
-  /* Secondary text */
-  .text-secondary {
-    @apply text-xs sm:text-sm md:text-base;
-    color: rgba(255, 255, 255, 0.8);
-    line-height: 1.6;
-    text-align: center;
-    font-weight: 400;
+  .text-responsive-base {
+    @apply text-sm sm:text-base md:text-lg;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   }
 
-
-  /* Gradient text effects with psychology */
+  /* Gradient text effects based on psychology */
   .text-gradient-primary {
-    background: linear-gradient(135deg, 
-      #ffffff 0%, 
-      var(--mint-aqua) 30%, 
-      var(--ocean-blue) 70%, 
-      #ffffff 100%
-    );
+    background: linear-gradient(135deg, #94e2d5 0%, #ffffff 50%, #87ceeb 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    background-size: 200% 200%;
-    animation: gradientText 3s ease infinite;
   }
-
 
   .text-gradient-innovation {
-    background: linear-gradient(135deg, 
-      var(--soft-coral) 0%, 
-      var(--pale-gold) 50%, 
-      var(--mint-aqua) 100%
-    );
+    background: linear-gradient(135deg, #ff9f8a 0%, #94e2d5 50%, #f4d03f 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    background-size: 200% 200%;
-    animation: gradientText 4s ease infinite;
   }
-
 
   .text-gradient-trust {
-    background: linear-gradient(135deg, 
-      var(--mint-aqua) 0%, 
-      var(--ocean-blue) 50%, 
-      var(--royal-blue) 100%
-    );
+    background: linear-gradient(135deg, #94e2d5 0%, #3498db 50%, #2980b9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    background-size: 200% 200%;
-    animation: gradientText 3.5s ease infinite;
   }
 
-
-  /* Centered button groups */
-  .button-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    
-    @apply sm:flex-row sm:gap-4;
+  /* Button styling with psychology-based colors */
+  .btn-responsive {
+    @apply px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base md:px-8 md:py-4 lg:text-lg;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-
-  .button-group .btn-responsive {
-    width: 100%;
-    max-width: 280px;
-    @apply sm:w-auto sm:max-w-none;
+  /* Trust-building primary button */
+  .btn-trust {
+    background: linear-gradient(135deg, #94e2d5 0%, #3498db 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 
+      0 4px 12px rgba(148, 226, 213, 0.4),
+      0 2px 4px rgba(52, 152, 219, 0.2);
   }
 
-
-  /* Enhanced responsive spacing */
-  .section-spacing {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    @apply sm:py-16 md:py-20 lg:py-24;
+  .btn-trust:hover {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 16px rgba(148, 226, 213, 0.5),
+      0 3px 8px rgba(52, 152, 219, 0.3);
   }
 
+  /* Innovation-focused secondary button */
+  .btn-innovation {
+    background: linear-gradient(135deg, #ff9f8a 0%, #f4d03f 100%);
+    color: #2c3e50;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(255, 159, 138, 0.3);
+  }
 
-  .content-spacing {
-    margin-bottom: 2rem;
-    @apply sm:mb-8 md:mb-10 lg:mb-12;
+  .btn-innovation:hover {
+    background: linear-gradient(135deg, #f4d03f 0%, #ff9f8a 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 159, 138, 0.4);
   }
 }
 
-
-/* Enhanced loading screen */
+/* Enhanced loading screen with psychology colors */
 .loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(135deg, 
-    var(--mint-aqua) 0%, 
-    var(--ocean-blue) 50%, 
-    var(--deep-navy) 100%
-  );
+  background: linear-gradient(135deg, #94e2d5 0%, #3498db 50%, #181825 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   transition: opacity 0.8s ease-out;
-  padding: 2rem;
+  padding: 1rem;
 }
-
 
 .loading-screen.hidden {
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
 }
-
 
 .loading-spinner {
-  width: 50px;
-  height: 50px;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top: 4px solid var(--mint-aqua);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #94e2d5;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 2rem;
-  
-  @apply sm:w-16 sm:h-16 sm:border-[6px] sm:border-t-[6px];
+  animation: spin 1.2s linear infinite;
+  margin-bottom: 20px;
+  @apply sm:w-12 sm:h-12 sm:border-4 sm:border-t-4;
+  @apply md:w-16 md:h-16;
 }
-
 
 .loading-text {
+  @apply text-base sm:text-lg md:text-xl font-semibold text-center;
   color: #ffffff;
-  font-size: 1.25rem;
-  font-weight: 600;
-  text-align: center;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  
-  @apply sm:text-xl md:text-2xl;
 }
 
-
-/* Enhanced keyframe animations */
-@keyframes psychologyFlow {
-  0% { 
-    background-position: 0% 50%;
-  }
-  20% { 
-    background-position: 100% 30%;
-  }
-  40% { 
-    background-position: 50% 100%;
-  }
-  60% { 
-    background-position: 0% 70%;
-  }
-  80% { 
-    background-position: 80% 20%;
-  }
-  100% { 
-    background-position: 0% 50%;
-  }
+/* Psychology-based animations */
+@keyframes calmingFlow {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 50%; }
+  50% { background-position: 50% 100%; }
+  75% { background-position: 0% 50%; }
+  100% { background-position: 50% 0%; }
 }
-
-
-@keyframes gradientText {
-  0%, 100% { 
-    background-position: 0% 50%;
-  }
-  50% { 
-    background-position: 100% 50%;
-  }
-}
-
 
 @keyframes trustPulse {
   0%, 100% { 
-    box-shadow: 
-      0 0 0 0 rgba(148, 226, 213, 0.7),
-      0 8px 32px rgba(148, 226, 213, 0.15);
+    box-shadow: 0 0 0 0 rgba(148, 226, 213, 0.7);
   }
   70% { 
-    box-shadow: 
-      0 0 0 20px rgba(148, 226, 213, 0),
-      0 12px 40px rgba(148, 226, 213, 0.25);
+    box-shadow: 0 0 0 10px rgba(148, 226, 213, 0);
   }
 }
 
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px);
-  }
-  50% { 
-    transform: translateY(-10px);
-  }
-}
-
-
-/* Mobile-first responsive design */
+/* Mobile optimizations */
 @media (max-width: 640px) {
   .page-container {
     min-height: 100svh;
-    padding-top: 5rem;
-    padding-bottom: 3rem;
   }
   
-  .content-section {
-    gap: 1.5rem;
+  button, .card {
+    min-height: 44px;
   }
   
   .glass-card {
-    padding: 1.5rem;
-    margin: 0 0.5rem;
-  }
-  
-  .text-hero {
-    font-size: 2.5rem;
-    line-height: 1.2;
+    backdrop-filter: blur(15px);
   }
 }
-
 
 /* Landscape mobile adjustments */
 @media (max-width: 896px) and (orientation: landscape) {
   .page-container {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-  }
-  
-  .content-section {
-    gap: 1rem;
+    @apply py-8;
   }
 }
 
-
-/* Tablet optimizations */
-@media (min-width: 641px) and (max-width: 1024px) {
-  .content-section {
-    gap: 2.5rem;
-  }
-  
+/* Dark mode support for accessibility */
+@media (prefers-color-scheme: dark) {
   .glass-card {
-    padding: 2rem;
+    background: linear-gradient(135deg, 
+      rgba(148, 226, 213, 0.2) 0%, 
+      rgba(24, 24, 37, 0.8) 100%
+    );
   }
 }
-
-
-/* Desktop enhancements */
-@media (min-width: 1025px) {
-  .content-section {
-    gap: 3rem;
-  }
-  
-  .glass-card:hover {
-    transform: translateY(-10px) scale(1.03);
-  }
-}
-
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .glass-card {
     border-width: 2px;
-    border-color: var(--mint-aqua);
-    background: rgba(0, 0, 0, 0.8);
+    border-color: #94e2d5;
   }
   
-  .text-body, .text-secondary {
+  .text-responsive-base {
     color: #ffffff;
   }
 }
-
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
@@ -517,229 +345,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-  
-  .glass-card:hover {
-    transform: none;
-  }
-}
-
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    background: linear-gradient(135deg, 
-      #2c5f5a 0%,     /* Darker mint-aqua */
-      #1e3a8a 30%,    /* Darker ocean blue */
-      #1e293b 60%,    /* Slate */
-      var(--deep-navy) 100%
-    );
-  }
-}
-
-
-/* Print styles */
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-  
-  .glass-card {
-    background: white;
-    border: 1px solid #ccc;
-    box-shadow: none;
-  }
-}
-/* ... existing CSS ... */
-
-
-/* Enhanced loading screen */
-.loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: linear-gradient(135deg, 
-    var(--mint-aqua) 0%, 
-    var(--ocean-blue) 30%,
-    var(--royal-blue) 60%,
-    var(--deep-navy) 100%
-  );
-  background-size: 400% 400%;
-  animation: psychologyFlow 8s ease infinite;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.8s ease-out;
-  padding: 2rem;
-}
-
-
-.loading-screen.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-
-/* Custom loader with your animation */
-.custom-loader {
-  height: 80px;
-  aspect-ratio: 1;
-  box-sizing: border-box;
-  position: relative;
-  
-  /* Enhanced mask with color psychology */
-  mask: 
-    radial-gradient(transparent 47%, #000 48% 71%, transparent 72%) exclude,
-    conic-gradient(#000 0 0) no-clip;
-  
-  /* Beautiful gradient instead of solid color */
-  background: conic-gradient(
-    from 0deg,
-    var(--mint-aqua) 0deg,
-    var(--soft-coral) 60deg,
-    var(--pale-gold) 120deg,
-    var(--ocean-blue) 180deg,
-    var(--royal-blue) 240deg,
-    var(--mint-aqua) 300deg,
-    var(--mint-aqua) 360deg
-  );
-  
-  animation: customLoader 1.5s linear infinite;
-  
-  /* Enhanced shadow and glow */
-  filter: drop-shadow(0 0 20px rgba(148, 226, 213, 0.6));
-}
-
-
-.custom-loader::before {
-  content: "";
-  position: absolute;
-  inset: 0 35% 70%;
-  border-radius: 50%;
-  
-  /* Glowing center dot */
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(148, 226, 213, 0.8) 50%,
-    rgba(52, 152, 219, 0.6) 100%
-  );
-  
-  filter: blur(8px);
-  animation: centerPulse 2s ease-in-out infinite;
-}
-
-
-.loading-text {
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.3),
-    0 0 20px rgba(148, 226, 213, 0.4);
-  
-  @apply sm:text-3xl md:text-4xl;
-}
-
-
-/* Custom animations */
-@keyframes customLoader {
-  to { 
-    rotate: 1turn;
-  }
-}
-
-
-@keyframes centerPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 1;
-  }
-}
-
-
-/* Responsive loader */
-@media (max-width: 640px) {
-  .custom-loader {
-    height: 60px;
-  }
-  
-  .loading-text {
-    font-size: 1.5rem;
-  }
-}
-
-
-@media (min-width: 1024px) {
-  .custom-loader {
-    height: 100px;
-  }
-}
-
-
-/* High performance settings */
-.custom-loader,
-.custom-loader::before {
-  will-change: transform;
-  backface-visibility: hidden;
-  transform-style: preserve-3d;
-}
-
-
-/* Accessibility improvements */
-@media (prefers-reduced-motion: reduce) {
-  .custom-loader {
-    animation-duration: 3s;
-  }
-  
-  .custom-loader::before {
-    animation: none;
-  }
-}
-
-
-/* Dark mode adjustments */
-@media (prefers-color-scheme: dark) {
-  .custom-loader::before {
-    background: radial-gradient(
-      circle,
-      rgba(148, 226, 213, 0.9) 0%,
-      rgba(52, 152, 219, 0.8) 50%,
-      rgba(255, 255, 255, 0.6) 100%
-    );
-  }
-}
-/* In src/index.css, update the page-container */
-/* In src/index.css, update for responsive navbar heights */
-.page-container {
-  @apply min-h-screen flex flex-col items-center justify-center px-4 py-20;
-  
-  /* Responsive padding-top based on navbar height */
-  padding-top: 5rem;      /* 80px for h-16 on mobile */
-  
-  @apply sm:px-6 md:px-8 lg:px-12;
-  
-  /* Responsive top padding */
-  @apply sm:pt-24;        /* 96px for h-20 on small */
-  @apply md:pt-24;        /* 96px for h-20 on medium */  
-  @apply lg:pt-28;        /* 112px for h-24 on large */
-  @apply xl:pt-32;        /* 128px for h-28 on xl */
-}
-
-
-/* Mobile optimizations */
-@media (max-width: 640px) {
-  .page-container {
-    min-height: 100svh;
-    padding-top: 4.5rem; /* 72px for compact mobile navbar */
   }
 }
