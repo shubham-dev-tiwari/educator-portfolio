@@ -347,3 +347,158 @@
     transition-duration: 0.01ms !important;
   }
 }
+/* ... existing CSS ... */
+
+/* Enhanced loading screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, 
+    var(--mint-aqua) 0%, 
+    var(--ocean-blue) 30%,
+    var(--royal-blue) 60%,
+    var(--deep-navy) 100%
+  );
+  background-size: 400% 400%;
+  animation: psychologyFlow 8s ease infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out;
+  padding: 2rem;
+}
+
+.loading-screen.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Custom loader with your animation */
+.custom-loader {
+  height: 80px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  position: relative;
+  
+  /* Enhanced mask with color psychology */
+  mask: 
+    radial-gradient(transparent 47%, #000 48% 71%, transparent 72%) exclude,
+    conic-gradient(#000 0 0) no-clip;
+  
+  /* Beautiful gradient instead of solid color */
+  background: conic-gradient(
+    from 0deg,
+    var(--mint-aqua) 0deg,
+    var(--soft-coral) 60deg,
+    var(--pale-gold) 120deg,
+    var(--ocean-blue) 180deg,
+    var(--royal-blue) 240deg,
+    var(--mint-aqua) 300deg,
+    var(--mint-aqua) 360deg
+  );
+  
+  animation: customLoader 1.5s linear infinite;
+  
+  /* Enhanced shadow and glow */
+  filter: drop-shadow(0 0 20px rgba(148, 226, 213, 0.6));
+}
+
+.custom-loader::before {
+  content: "";
+  position: absolute;
+  inset: 0 35% 70%;
+  border-radius: 50%;
+  
+  /* Glowing center dot */
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(148, 226, 213, 0.8) 50%,
+    rgba(52, 152, 219, 0.6) 100%
+  );
+  
+  filter: blur(8px);
+  animation: centerPulse 2s ease-in-out infinite;
+}
+
+.loading-text {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(148, 226, 213, 0.4);
+  
+  @apply sm:text-3xl md:text-4xl;
+}
+
+/* Custom animations */
+@keyframes customLoader {
+  to { 
+    rotate: 1turn;
+  }
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Responsive loader */
+@media (max-width: 640px) {
+  .custom-loader {
+    height: 60px;
+  }
+  
+  .loading-text {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-loader {
+    height: 100px;
+  }
+}
+
+/* High performance settings */
+.custom-loader,
+.custom-loader::before {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .custom-loader {
+    animation-duration: 3s;
+  }
+  
+  .custom-loader::before {
+    animation: none;
+  }
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  .custom-loader::before {
+    background: radial-gradient(
+      circle,
+      rgba(148, 226, 213, 0.9) 0%,
+      rgba(52, 152, 219, 0.8) 50%,
+      rgba(255, 255, 255, 0.6) 100%
+    );
+  }
+}
